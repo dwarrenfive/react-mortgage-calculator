@@ -19,9 +19,19 @@ export default class App extends React.Component {
     let num = rate * Math.pow(1 + rate, term);
     let num2 = Math.pow(1 + rate, term) - 1;
     let monthly = (balance * num) / num2;
-    document.getElementById("output").innerHTML = `${monthly.toFixed(
-      2
-    )} is your payment.`;
+    if (balance <= 0 && rate <= 0) {
+      document.getElementById("output").innerHTML =
+        "Please enter a valid inputs";
+    } else if (rate <= 0) {
+      document.getElementById("output").innerHTML = "Please enter a valid rate";
+    } else if (balance <= 0) {
+      document.getElementById("output").innerHTML =
+        "Please enter a valid balance";
+    } else {
+      document.getElementById("output").innerHTML = `${monthly.toFixed(
+        2
+      )} is your payment.`;
+    }
   }
 
   handleChange(e) {
@@ -30,37 +40,41 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <h3>Mortgage Calculator</h3>
-        <form>
-          <label>
-            Loan Balance
-            <input
-              name="balance"
-              id="balance"
-              type="number"
-              placeholder="i.e., 150000"
-              value={this.state.balance}
-              onChange={this.handleChange}
-            />
-          </label>
-        </form>
-        <form>
-          <label>
-            Interest Rate (%)
-            <input
-              name="rate"
-              type="number"
-              step="0.01"
-              placeholder="i.e., 4.5"
-              value={this.state.rate}
-              onChange={this.handleChange}
-            />
-          </label>
-        </form>
-        <form>
-          <label>
-            Loan Term (years)
+      <div className="container col-4 text-center m-8">
+        <div className="card rounded-lg shadow-lg">
+          <div className="card-header alert-success">
+            <h3>Mortgage Calculator</h3>
+          </div>
+          <form className="m-1">
+            <label>
+              Loan Balance
+              <input
+                name="balance"
+                id="balance"
+                type="number"
+                className="form-control"
+                placeholder="i.e., 150000"
+                value={this.state.balance}
+                onChange={this.handleChange}
+              />
+            </label>
+          </form>
+          <form className="m-1">
+            <label>
+              Interest Rate (%)
+              <input
+                name="rate"
+                type="number"
+                step="0.01"
+                className="form-control"
+                placeholder="i.e., 4.5"
+                value={this.state.rate}
+                onChange={this.handleChange}
+              />
+            </label>
+          </form>
+          <div className="dropdown open">
+            <h6 className="dropdown-header">Loan Term (years)</h6>
             <select
               name="term"
               id="term"
@@ -70,13 +84,18 @@ export default class App extends React.Component {
               <option value="15">15</option>
               <option value="30">30</option>
             </select>
-          </label>
-        </form>
-        <br />
-        <button name="submit" onClick={this.calculate}>
-          Calculate
-        </button>
-        <div name="output" id="output"></div>
+          </div>
+          <div className="card-footer">
+            <button
+              className="btn btn-primary btn-block"
+              name="submit"
+              onClick={this.calculate}
+            >
+              Calculate
+            </button>
+            <div name="output" id="output"></div>
+          </div>
+        </div>
       </div>
     );
   }
