@@ -45,45 +45,47 @@ export default class App extends React.Component {
           <div className="card-header alert-success">
             <h3>Mortgage Calculator</h3>
           </div>
-          <form className="m-1">
-            <label>
-              Loan Balance
-              <input
-                name="balance"
-                id="balance"
-                type="number"
-                className="form-control"
-                placeholder="i.e., 150000"
-                value={this.state.balance}
+          <div id="data">
+            <form className="m-1">
+              <label>
+                <h6>Loan Balance</h6>
+                <input
+                  name="balance"
+                  id="balance"
+                  type="number"
+                  className="form-control"
+                  placeholder="i.e., 150000"
+                  value={this.state.balance}
+                  onChange={this.handleChange}
+                />
+              </label>
+            </form>
+            <form className="m-1">
+              <label>
+                <h6>Interest Rate (%)</h6>
+                <input
+                  name="rate"
+                  type="number"
+                  step="0.01"
+                  className="form-control"
+                  placeholder="i.e., 4.5"
+                  value={this.state.rate}
+                  onChange={this.handleChange}
+                />
+              </label>
+            </form>
+            <div className="m-1">
+              <h6>Loan Term (years)</h6>
+              <select
+                name="term"
+                id="term"
+                value={this.state.term}
                 onChange={this.handleChange}
-              />
-            </label>
-          </form>
-          <form className="m-1">
-            <label>
-              Interest Rate (%)
-              <input
-                name="rate"
-                type="number"
-                step="0.01"
-                className="form-control"
-                placeholder="i.e., 4.5"
-                value={this.state.rate}
-                onChange={this.handleChange}
-              />
-            </label>
-          </form>
-          <div className="dropdown open m-1">
-            <h6 className="dropdown-header">Loan Term (years)</h6>
-            <select
-              name="term"
-              id="term"
-              value={this.state.term}
-              onChange={this.handleChange}
-            >
-              <option value="15">15</option>
-              <option value="30">30</option>
-            </select>
+              >
+                <option value="15">15</option>
+                <option value="30">30</option>
+              </select>
+            </div>
           </div>
           <div className="card-footer">
             <button
