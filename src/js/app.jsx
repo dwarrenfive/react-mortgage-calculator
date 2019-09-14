@@ -28,7 +28,7 @@ export default class App extends React.Component {
       document.getElementById("output").innerHTML =
         "Please enter a valid balance";
     } else {
-      document.getElementById("output").innerHTML = `${monthly.toFixed(
+      document.getElementById("output").innerHTML = `$${monthly.toFixed(
         2
       )} is your payment.`;
     }
@@ -73,7 +73,7 @@ export default class App extends React.Component {
               />
             </label>
           </form>
-          <div className="dropdown open">
+          <div className="dropdown open m-1">
             <h6 className="dropdown-header">Loan Term (years)</h6>
             <select
               name="term"
